@@ -308,14 +308,19 @@ sparkleToggle.onclick = () => {
   sparkles.forEach(s => s.style.display = sparklesOn ? "block" : "none");
 };
   
-/* Stop music when the page is left or hidden */
+
+/* Pause and resume music automatically */
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     music.pause();
+  } else {
+    if (startScreen.style.display === "none") {
+      music.play().catch(() => {});
+    }
   }
 });
 
-/* Stop music when the page is being unloaded */
+/* Pause when navigating away */
 window.addEventListener("pagehide", () => {
   music.pause();
 });
