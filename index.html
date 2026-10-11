@@ -307,6 +307,19 @@ sparkleToggle.onclick = () => {
   sparklesOn = !sparklesOn;
   sparkles.forEach(s => s.style.display = sparklesOn ? "block" : "none");
 };
+  
+/* Stop music when the page is left or hidden */
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    music.pause();
+  }
+});
+
+/* Stop music when the page is being unloaded */
+window.addEventListener("pagehide", () => {
+  music.pause();
+});
+
 </script>
 
 <div class="watermark">
